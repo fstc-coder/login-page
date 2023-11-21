@@ -1,0 +1,39 @@
+<%- include('header')-%>
+
+
+<div class="text-center center-div" id="login">
+  <div class="container w-25 border py-5">
+    <div class="title pb-5">
+      <h2 class="fw-bold">Login System</h2>
+      <span>Log in for the existing user</span>
+     
+    </div>
+    <form action="/route/login" method="post" class="pt-3">
+      <div class="mb-2 text-center">
+        <small class="form-text text-muted  ">Register Email Address</small>
+        <input type="email" class="form-control" placeholder="Email" name="email" required="">
+        
+      </div>
+      <div class="mb-3 text-center">
+        <small class="form-text text-muted ">Enter Password</small>
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
+        <% if(locals.invlaidEmail) {%>
+          <div class="text-danger text-start email-alert " >
+            <%= invlaidEmail %>
+          </div>
+        <%}%>
+      </div>
+      
+      <button type="submit" class="btn btn-success rounded-pill">Submit</button>
+    </form>
+  </div>
+</div>
+
+<% if(locals.logout){ %>
+  <div class="alert  text-success text-center mt-5  ">
+    <%= logout %>
+  </div>
+<% } %>
+
+<%- include('footer')-%>
+  
