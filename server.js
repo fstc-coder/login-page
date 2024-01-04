@@ -1,5 +1,5 @@
 const express = require('express');
-const cookie = require('cookie-parser');
+// const cookie = require('cookie-parser');
 const nocache = require('nocache');
 const path = require('path');
 const bodyparser = require("body-parser");
@@ -8,7 +8,7 @@ const {v4: uuidv4} = require("uuid");
 const {restart} = require('nodemon')
 const router = require('./router');
 
-const app = express();
+const app = express(); 
 
 const port = process.env.PORT || 3001;
 
@@ -16,11 +16,11 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
 app.set('view engine','ejs');
-app.use(cookie())
+// app.use(cookie())  
 
 //load static assests
 app.use('/static',express.static(path.join(__dirname,'public')));
-app.use('/assests',express.static(path.join(__dirname, 'public/assests')));
+app.use('/assets',express.static(path.join(__dirname, 'public/assets')));
 
 app.use(session({
   secret: 'keyboard Cat',
