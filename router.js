@@ -1,4 +1,5 @@
 const express = require("express");
+const validator = require("validator");
 const nocache = require("nocache");
 //const nocache = require("nocache");
 
@@ -19,6 +20,13 @@ const credential = {
 // login user
 
 router.post('/login',(req,res)=>{
+  const {email,password} = req.body;
+ 
+  //check email is valid
+  if(!validator.isEmail(email)){
+    return res.render('base',{title: "Express",invalidformat: "Invalid email format"});
+  }
+
   if(req.body.email == credential.email && req.body.password == credential.password){
     req.session.user = req.body.email;
     //res.cookie("email",req.body.email);
@@ -30,6 +38,7 @@ router.post('/login',(req,res)=>{
     //res.end("Login Successful...!")
   }else  {
    //res.send("invalid username")
+   
    res.render('base',{title: "Express" ,invlaidEmail: "Invalid email or password"});
   }
 
@@ -73,4 +82,7 @@ router.get('/logout',(req,res)=>{
   
 
 })
+
+
+
 module.exports = router;
